@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary text-primary" style="border: 2px solid white; background-color: white;">PlaqueMoi</button>
+            </li>
+            
+        </ul>
+        <ul class="navbar-nav" *ngIf="!getIsAuth()">
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary text-light" (click)="onConnect()">Connexion</button>
+            </li>
+            <li style="display: flex; align-items: center; vertical-align: center;">
+                    <div style="border: solid 1px white; width: 2px ; height:70%;"></div>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary text-light">Inscription</button>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav" *ngIf="getIsAuth()">
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary text-light" >Conversations</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary text-light" >Rechercher</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary text-light" >Demandes</button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary text-light" (click)="onConnect()">Déconnexion</button>
+            </li>
+        </ul>
+    </div>
+</nav>
