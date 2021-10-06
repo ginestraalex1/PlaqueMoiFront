@@ -10,8 +10,8 @@
       <label for="exampleInputPassword1">Mot de passe</label>
       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
     </div>
-    <div style="text-align: center;">
-      <button type="submit" class="btn btn-primary" style="margin-top: 15px;">Se connecter</button>
-    </div>
   </form>
+  <div style="text-align: center;">
+    <button class="btn btn-primary" style="margin-top: 15px;" (click)="onSignIn()" *ngIf="!getIsAuth()">Se connecter</button>
+  </div>
 </div>

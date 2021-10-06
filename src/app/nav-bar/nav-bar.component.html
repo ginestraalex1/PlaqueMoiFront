@@ -2,34 +2,37 @@
     <div class="container-fluid">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <button type="button" class="btn btn-primary text-primary" style="border: 2px solid white; background-color: white;">PlaqueMoi</button>
+                <div class="btn welcome-button btn-primary">
+                    <a routerLink="welcome" routerLinkActive="router-link-active" class="nav-link text-light">PlaqueMoi</a>
+                </div>
+                
             </li>
             
         </ul>
         <ul class="navbar-nav" *ngIf="!getIsAuth()">
             <li class="nav-item">
-                <button type="button" class="btn btn-primary text-light" (click)="onConnect()">Connexion</button>
+                <a routerLink="signin" routerLinkActive="router-link-active" class="nav-link text-light">Connexion</a>
             </li>
             <li style="display: flex; align-items: center; vertical-align: center;">
                     <div style="border: solid 1px white; width: 2px ; height:70%;"></div>
             </li>
             <li class="nav-item">
-                <button type="button" class="btn btn-primary text-light">Inscription</button>
+                <a routerLink="signup" routerLinkActive="router-link-active" class="nav-link text-light">Inscription</a>
             </li>
         </ul>
 
         <ul class="navbar-nav" *ngIf="getIsAuth()">
             <li class="nav-item">
-                <button type="button" class="btn btn-primary text-light">Rechercher</button>
+                <a routerLink="search" routerLinkActive="router-link-active" class="nav-link text-light">Rechercher</a>
             </li>
             <li class="nav-item">
-                <button type="button" class="btn btn-primary text-light">Conversations</button>
+                <a routerLink="conversations" routerLinkActive="router-link-active" class="nav-link text-light">Conversations</a>
             </li>
             <li class="nav-item">
-                <button type="button" class="btn btn-primary text-light">Demandes</button>
+                <a routerLink="friendRequests" routerLinkActive="router-link-active" class="nav-link text-light">Demandes</a>
             </li>
             <li class="nav-item">
-                <button type="button" class="btn btn-primary text-light" (click)="onConnect()">Déconnexion</button>
+                <button class="btn btn-primary" (click)="onSignOut()">Déconnexion</button>
             </li>
         </ul>
     </div>

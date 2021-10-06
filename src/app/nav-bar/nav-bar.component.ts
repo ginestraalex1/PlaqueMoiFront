@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,25 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  unTitre : string = 'Nav-bar';
-  isAuth : boolean = false;
-
-  constructor() { 
+  constructor(private authService: AuthService, private router: Router) { 
   }
 
   ngOnInit(): void {
   }
 
-  getStatus() : string {
-    return this.unTitre;
-  }
-
   getIsAuth(): boolean{
-    return this.isAuth;
+    return this.authService.isAuth;
   }
 
-  onConnect() : void{
-    this.isAuth = !this.isAuth;
+  onSignIn() : void{
+    this.authService.signIn();
+  }
+
+  onSignOut() : void{
+    this.authService.signOut().then(()=>{
+      this.router.navigate(['welcome']);
+
+    });  
+
   }
 
 }
