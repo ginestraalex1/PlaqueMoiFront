@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 
@@ -14,9 +15,10 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSignIn() : void{
+  onSignIn(form: NgForm) : void{
+    console.log(form.value);
     this.authService.signIn().then(()=>{
-      this.router.navigate(['welcome']);
+      this.router.navigate(['conversations']);
     });
   }
 

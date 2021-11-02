@@ -2,7 +2,23 @@
     margin-top: 5%;
     margin-left: 25%; 
     margin-right: 25%; 
-    padding: 5%;
+    margin-bottom: 5%;
+    padding: 3%;
     border-radius: 5px; 
     background-color: #E0EDF4;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group *{
+    margin-top: 5px;
+}
+
+.form-group-btn {
+    text-align: center;
+    padding-top: 10px;
 }

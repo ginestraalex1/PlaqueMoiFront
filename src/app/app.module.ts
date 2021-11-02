@@ -12,15 +12,21 @@ import { AuthService } from './service/auth.service';
 import { ConversationComponent } from './conversation/conversation.component';
 import { ConversationsComponent } from './conversations/conversations.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { AuthGard } from './service/auth-gard.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from './service/user.service';
+
 
 const appRoutes: Routes = [
   { path : 'signin', component: SignInComponent},
   { path: 'signup', component: SignUpComponent},
   { path: 'welcome', component: WelcomeComponent},
-  { path: 'conversation/:id', component: ConversationComponent},
-  { path: 'conversations', component: ConversationsComponent},
+  { path: 'conversation/:id', canActivate: [AuthGard],  component: ConversationComponent},
+  { path: 'conversations', canActivate: [AuthGard], component: ConversationsComponent},
   { path: '', component: WelcomeComponent},
-  { path: '**', component: NotFoundComponent}
+  { path:'not-found', component: NotFoundComponent},
+  { path: '**', redirectTo: 'not-found'}
 ]
 
 @NgModule({
@@ -37,10 +43,15 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGard,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

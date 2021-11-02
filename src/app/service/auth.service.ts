@@ -1,7 +1,13 @@
+import { User } from "../models/User.model";
 
 export class AuthService{
     
     isAuth = false;
+
+    isSignedIn() : boolean {
+        return this.isAuth;
+    }
+
 
     signIn(){
         return new Promise((resolve, reject) => {
@@ -19,5 +25,9 @@ export class AuthService{
                 resolve(true);
             }, 500);
         });
+    };
+
+    singUp(user: User){
+        console.log("user :" +user);
     };
 }

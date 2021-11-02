@@ -1,17 +1,17 @@
-<div class="sign-in-form">
-  <form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Numéro d'immatriculation</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-        placeholder="Saisir le numéro de plaque">
-      <small id="emailHelp" class="form-text text-muted">Nous ne partagerons jamais vos données.</small>
-    </div>
-    <div class="form-group" style="margin-top: 10px;">
-      <label for="exampleInputPassword1">Mot de passe</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-  </form>
-  <div style="text-align: center;">
-    <button class="btn btn-primary" style="margin-top: 15px;" (click)="onSignIn()" *ngIf="!getIsAuth()">Se connecter</button>
+  <div class="sign-in-form">
+    <form (ngSubmit)="onSignIn(f)" #f="ngForm">
+      <div class="form-group">
+        <label for="userId">Numéro d'immatriculation</label>
+        <input  type="email" class="form-control" id="userId" name="userId" placeholder="Saisir le numéro de plaque" 
+        ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="userPassword">Mot de passe</label>
+        <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Mot de passe" 
+        ngModel required>
+      </div>
+      <div class="form-group-btn">
+        <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Se connecter</button>
+      </div>
+    </form>
   </div>
-</div>
