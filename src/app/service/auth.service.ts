@@ -1,7 +1,13 @@
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { User } from "../models/User.model";
 
+@Injectable()
 export class AuthService{
     
+    constructor(private httpClient: HttpClient){}
+
     isAuth = false;
 
     isSignedIn() : boolean {
@@ -9,13 +15,8 @@ export class AuthService{
     }
 
 
-    signIn(){
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                this.isAuth = true;
-                resolve(true);
-            }, 1000);
-        });
+    signIn(user: User): Observable<Object>{
+        return this.httpClient.post('http://localhost:9000/Session/SignIn', user, {responseType: 'text'});
     };
 
     signOut(){

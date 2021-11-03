@@ -22,3 +22,11 @@
     text-align: center;
     padding-top: 10px;
 }
+
+.pwd-error{
+    border:solid 3px red;
+}
+
+.pwd-error-message{
+    color: red;
+}

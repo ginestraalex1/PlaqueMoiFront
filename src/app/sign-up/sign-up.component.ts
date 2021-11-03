@@ -13,6 +13,9 @@ export class SignUpComponent implements OnInit {
 
   public userForm: FormGroup;
 
+  private wrongPassword : boolean = false;
+  private wrongPasswordTimer : any;
+
   constructor(private formBuilder: FormBuilder,
         private userService: UserService,
         private router: Router) {
@@ -22,7 +25,7 @@ export class SignUpComponent implements OnInit {
       firstName : ['', Validators.required],
       userName : ['', Validators.required],
       userEmail : ['', [Validators.required, Validators.email]],
-      userPassword : ['', Validators.required],
+      userPassword : ['', Validators.required, ],
       userPasswordConfirmation : ['', Validators.required]
     });
   }
@@ -31,16 +34,34 @@ export class SignUpComponent implements OnInit {
   }
 
   onSignUp(): void{
+    if(this.wrongPasswordTimer){
+      clearTimeout(this.wrongPasswordTimer);
+    }
     const newUser = this.userForm.value;
-    this.userService.signUp(new User(newUser['plateNumber'],
-      newUser['lastName'],
-      newUser['firstName'],
-      newUser['userName'],
-      newUser['userEmail'],
-      newUser['userPassword'])
-    ).then(()=>{
-        this.router.navigate(['welcome']);
-    });
+    var userTemp = new User(newUser['plateNumber'],
+                            newUser['userPassword'],
+                            newUser['lastName'],
+                            newUser['firstName'],
+                            newUser['userName'],
+                            newUser['userEmail']);
+    if(newUser['userPassword'] != newUser['userPasswordConfirmation']){
+      this.wrongPassword = true;
+      this.wrongPasswordTimer = setTimeout(() => {
+        this.wrongPassword = false;
+      },1500);
+    } 
+    else{  
+      var subscription = this.userService.signUp(userTemp).subscribe((data) => {
+        subscription.unsubscribe();
+        this.router.navigate(['signin']);
+      }, (error)=>{
+        console.log(error);
+      });
+    }                   
+  }
+
+  isWrongPassword(): boolean{
+    return this.wrongPassword;
   }
 
 }

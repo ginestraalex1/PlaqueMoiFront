@@ -24,7 +24,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.header = this.header.set("Authorization", "Basic " + window.btoa("Admin:adminpassword"));
+    /*this.header = this.header.set("Authorization", "Basic " + window.btoa("Admin:adminpassword"));
 
     var suscriber = this.http.get("http://localhost:9000/person", {
       headers : this.header,
@@ -39,7 +39,7 @@ export class WelcomeComponent implements OnInit {
       console.log(error);
       suscriber.unsubscribe();
 
-    });
+    });*/
   }
 
   printHeader(): void{

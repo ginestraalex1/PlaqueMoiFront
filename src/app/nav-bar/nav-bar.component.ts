@@ -19,10 +19,6 @@ export class NavBarComponent implements OnInit {
     return this.authService.isAuth;
   }
 
-  onSignIn() : void{
-    this.authService.signIn();
-  }
-
   onSignOut() : void{
     this.authService.signOut().then(()=>{
       this.router.navigate(['welcome']);
