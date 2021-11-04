@@ -20,11 +20,12 @@ export class NavBarComponent implements OnInit {
   }
 
   onSignOut() : void{
-    this.authService.signOut().then(()=>{
+    var subscription = this.authService.signOut().subscribe(()=>{
+      this.authService.isAuth = false;
+      localStorage.removeItem('plaquemoiToken');
+      localStorage.removeItem('plaquemoiId');
+      subscription.unsubscribe();
       this.router.navigate(['welcome']);
-
     });  
-
   }
-
 }

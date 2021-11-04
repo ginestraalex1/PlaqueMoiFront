@@ -16,6 +16,7 @@ import { AuthGard } from './service/auth-gard.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './service/user.service';
+import { SearchComponent } from './search/search.component';
 
 
 const appRoutes: Routes = [
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'welcome', component: WelcomeComponent},
   { path: 'conversation/:id', canActivate: [AuthGard],  component: ConversationComponent},
   { path: 'conversations', canActivate: [AuthGard], component: ConversationsComponent},
+  { path: 'search', canActivate: [AuthGard], component: SearchComponent},
   { path: '', component: WelcomeComponent},
   { path:'not-found', component: NotFoundComponent},
   { path: '**', redirectTo: 'not-found'}
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
     SignInComponent,
     ConversationComponent,
     ConversationsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

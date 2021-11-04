@@ -30,8 +30,10 @@ export class SignInComponent implements OnInit {
       )
     ).subscribe((data)=>{
       console.log(data.toString());
-      //localStorage.setItem("plaquemoiToken", data.toString());
-      
+      localStorage.setItem("plaquemoiToken", data.toString());
+      localStorage.setItem("plaquemoiId", form.value['plateNumber']);
+      this.authService.isAuth = true;
+      this.router.navigate(['welcome']);
     }, (error)=>{
       this.wrongPassword = true;
       this.wrongPasswordTimer = setTimeout(() => {

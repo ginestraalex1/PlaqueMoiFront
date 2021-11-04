@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "../models/User.model";
+import { Session } from "../models/Session.model";
 
 @Injectable()
 export class AuthService{
@@ -19,16 +20,12 @@ export class AuthService{
         return this.httpClient.post('http://localhost:9000/Session/SignIn', user, {responseType: 'text'});
     };
 
-    signOut(){
-        return new Promise((resolve, reject)=>{
-            setTimeout(()=>{
-                this.isAuth = false;
-                resolve(true);
-            }, 500);
-        });
+    signOut(): Observable<Object>{
+        return this.httpClient.delete('http://localhost:9000/Session/SignOut/'+localStorage.getItem('plaquemoiId'));
     };
 
-    singUp(user: User){
-        console.log("user :" +user);
-    };
+    sessionCheck(session: Session): Observable<Object>{
+        return this.httpClient.post('http://localhost:9000/Session/TokenValidity', session, {responseType: 'text'});
+    }
+
 }
